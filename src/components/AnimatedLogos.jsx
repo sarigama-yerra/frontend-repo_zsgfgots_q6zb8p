@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Server, Cloud, Cpu, SquareStack, Network, Boxes } from 'lucide-react'
+import { Server, Cloud, SquareStack, Network, Boxes } from 'lucide-react'
 
 const providers = [
   { name: 'Vultr', icon: Cloud, color: 'from-sky-400 to-blue-500' },
@@ -15,11 +15,11 @@ export default function AnimatedLogos() {
       {providers.map((p, i) => (
         <motion.div
           key={p.name}
-          whileHover={{ y: -6, scale: 1.03 }}
           className="group"
           initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: i * 0.05 }}
+          animate={{ opacity: 1, y: [0, -6, 0] }}
+          transition={{ delay: i * 0.05, duration: 3 + (i % 3), repeat: Infinity, ease: 'easeInOut' }}
+          whileHover={{ scale: 1.04 }}
         >
           <div className="flex items-center gap-3 p-3 rounded-xl bg-white/70 backdrop-blur border border-white/40 shadow-sm">
             <div className={`inline-flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br ${p.color}`}>
